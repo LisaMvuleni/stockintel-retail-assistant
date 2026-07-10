@@ -1,16 +1,17 @@
 export const theme = {
   colors: {
-    primary: "#39FF14",
-    primaryDark: "#2ECC10",
+    primary: "#C8102E",
+    primaryDark: "#A50D24",
+    white: "#FFFFFF",
 
-    background: "#0B0B0B",
-    surface: "#161616",
-    surfaceLight: "#202020",
+    background: "#F8F9FB",
+   // surface: "#161616",
+    //surfaceLight: "#202020",
 
-    text: "#FFFFFF",
-    textSecondary: "#B5B5B5",
+    text: "#1F2937",
+    textSecondary: "#6B7280",
 
-    border: "#2D2D2D",
+    border: "#E5E7EB",
 
     success: "#00C854",
     warning: "#FFC107",

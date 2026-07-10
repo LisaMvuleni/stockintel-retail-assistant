@@ -1,9 +1,7 @@
+import LoginPage from "./pages/LoginPage";
+
 function App() {
-  return (
-    <div>
-      <h1>StockIntel Retail Assistant</h1>
-    </div>
-  );
+  return <LoginPage />;
 }
 
 export default App;
