@@ -1,32 +1,11 @@
 import styled from "styled-components";
 
-export const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
+export const LogoImage = styled.img`
+  width: 240px;
 
-export const LogoIcon = styled.div`
-  width: 42px;
-  height: 42px;
+  height: auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 
-  border-radius: 10px;
-
-  background-color: ${({ theme }) => theme.colors.primary};
-
-  color: ${({ theme }) => theme.colors.white};
-
-  font-size: 22px;
-  font-weight: 700;
-`;
-
-export const LogoText = styled.span`
-  font-size: 24px;
-  font-weight: 700;
-
-  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: 24px;
 `;

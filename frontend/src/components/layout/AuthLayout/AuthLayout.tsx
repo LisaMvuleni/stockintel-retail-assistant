@@ -1,13 +1,26 @@
+import React from "react";
+
 import {
-  AuthContainer,
+  Container,
   LeftPanel,
   RightPanel,
-  BrandTitle,
-  BrandDescription,
+  WarehouseImage,
+  FadeOverlay,
+  Content,
+  Logo,
+  // BrandTitle,
+  // BrandDescription,
+  FloatingCard,
+  //StatOne,
+  StatTwo,
+  StatTitle,
+  StatValue,
   LoginCard,
-  Illustration
 } from "./AuthLayout.style";
-import retailImage from "../../../assets/retail-illustration.png";
+
+import AIInsightsCard from "../../ui/AIInsightscard/AIInsightsCard";
+
+import warehouseImage from "../../../assets/Images/warehouse.png";
 
 
 interface AuthLayoutProps {
@@ -15,58 +28,101 @@ interface AuthLayoutProps {
 }
 
 
-function AuthLayout({
-  children,
-}: AuthLayoutProps) {
+function AuthLayout({ children }: AuthLayoutProps) {
+  return (
+    <Container>
+
+      <LeftPanel>
+
+        <WarehouseImage
+          src={warehouseImage}
+          alt="Warehouse"
+        />
+
+        <FadeOverlay />
 
 
-return (
+        <Content>
 
-<AuthContainer>
-
-
-<LeftPanel>
-
-<LeftPanel>
-
-  <Illustration
-    src={retailImage}
-    alt="Retail inventory illustration"
-  />
+          <Logo>
+            <img
+              src="/logo.png"
+              alt="StockIntel"
+            />
+          </Logo>
 
 
-  <BrandTitle>
-    Smarter Inventory Decisions
-  </BrandTitle>
+          {/* <BrandTitle>
+            Smarter Inventory
+            <br />
+            Decisions
+          </BrandTitle>
 
 
-  <BrandDescription>
-    Empower your retail operations with AI-driven insights
-    that transform complex data into actionable stock
-    management decisions.
-  </BrandDescription>
+          <BrandDescription>
+            Empower your retail operations with AI-driven insights
+            that transform complex data into actionable stock
+            management decisions.
+          </BrandDescription> */}
 
 
-</LeftPanel>
-
-
-</LeftPanel>
+        </Content>
 
 
 
-<RightPanel>
+        {/* <FloatingCard> */}
 
-  <LoginCard>
-    {children}
-  </LoginCard>
+          {/* <AIInsightsCard /> */}
 
-</RightPanel>
+        {/* </FloatingCard> */}
 
 
-</AuthContainer>
 
-);
+        {/* <StatOne>
 
+          <StatTitle>
+            Low Stock Items
+          </StatTitle>
+
+          <StatValue>
+            24
+          </StatValue>
+
+        </StatOne> */}
+
+
+
+        {/* <StatTwo>
+
+          <StatTitle>
+            Forecast Accuracy
+          </StatTitle>
+
+          <StatValue>
+            98%
+          </StatValue>
+
+        </StatTwo> */}
+
+
+      </LeftPanel>
+
+
+
+
+      <RightPanel>
+
+        <LoginCard>
+
+          {children}
+
+        </LoginCard>
+
+      </RightPanel>
+
+
+    </Container>
+  );
 }
 
 

@@ -1,26 +1,14 @@
-import {
-  LogoContainer,
-  LogoIcon,
-  LogoText,
-} from "./Logo.style";
+import { LogoImage } from "./Logo.style";
 
+import Logo from "../../../assets/logo/Logo.png";
 
-function Logo(){
-
+function LogoComponent() {
   return (
-    <LogoContainer>
-
-      <LogoIcon>
-        S
-      </LogoIcon>
-
-      <LogoText>
-        StockIntel
-      </LogoText>
-
-    </LogoContainer>
+    <LogoImage
+      src={Logo}
+      alt="StockIntel Logo"
+    />
   );
 }
 
-
-export default Logo;
+export default LogoComponent;
