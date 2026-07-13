@@ -12,6 +12,22 @@ export const Container = styled.div`
   background: #fff8f8;
 `;
 
+export const BackgroundImage = styled.img`
+  position: absolute;
+  inset: 0;
+
+  width: 86%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0.35;
+
+  z-index: 1;
+
+  pointer-events: none;
+`;
+
 
 
 export const LeftPanel = styled.section`
@@ -96,7 +112,7 @@ export const Content = styled.div`
 
 export const Logo = styled.div`
 
-  width:220px;
+  width:170px;
 
   margin-bottom:45px;
 
@@ -261,17 +277,29 @@ export const StatValue = styled.strong`
 
 
 export const RightPanel = styled.section`
+  position: relative;
+
+  z-index: 2;
+
   width: 100%;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
 `;
 
 
 
 export const LoginCard = styled.div`
-  width: 460px;
-  background: #ffffff;
+  position: relative;
+
+  z-index: 3;
+
+  width: 430px;
+
+  background: white;
 
   padding: 48px;
 
@@ -280,6 +308,6 @@ export const LoginCard = styled.div`
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
 
   display: flex;
+
   flex-direction: column;
 `;
-

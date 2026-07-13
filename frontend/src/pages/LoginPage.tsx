@@ -5,7 +5,7 @@ import LogoComponent from "../components/ui/Logo/Logo";
 import Input from "../components/ui/Input/Input";
 import Button from "../components/ui/Button/Button";
 import Link from "../components/ui/Link/Link";
-
+import { useNavigate } from "react-router-dom";
 import {
   Heading2,
   Body,
@@ -19,7 +19,7 @@ function LoginPage() {
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
+  const navigate = useNavigate();
   const validateForm = () => {
 
     let isValid = true;
@@ -82,10 +82,9 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
           error={passwordError}
         />
-
-        <Link>
-          Forgot Password?
-        </Link>
+      <Link onClick={() => navigate("/forgot-password")}>
+        Forgot Password?
+      </Link>
 
         <Button onClick={handleLogin}>
           Login

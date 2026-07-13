@@ -1,0 +1,34 @@
+import styled from "styled-components";
+
+export const ForgotPasswordContent = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const LogoSection = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+`;
+
+export const HeaderSection = styled.div`
+  margin-bottom: 28px;
+
+  p {
+    margin-top: 8px;
+    max-width: 250px;
+    line-height: 1.6;
+  }
+`;
+
+export const FormSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+`;
+
+export const BackToLogin = styled.div`
+  margin-top: 22px;
+`;
+

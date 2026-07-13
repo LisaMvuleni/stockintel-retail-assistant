@@ -1,17 +1,20 @@
 import styled from "styled-components";
 
+export const StyledLink = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
 
-export const StyledLink = styled.a`
+  font-size: 14px;
+  font-weight: 500;
 
-font-size:14px;
+  color: ${({ theme }) => theme.colors.primary};
 
-color:
-${({theme})=>theme.colors.primary};
+  cursor: pointer;
 
+  align-self: flex-start;
 
-cursor:pointer;
-
-font-weight:500;
-
-
+  &:hover {
+    text-decoration: underline;
+  }
 `;

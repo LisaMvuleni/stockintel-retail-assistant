@@ -1,24 +1,19 @@
-import {StyledLink} from "./Link.style";
+import { StyledLink } from "./Link.style";
 
-
-interface LinkProps{
-
-children:React.ReactNode;
-
+interface LinkProps {
+  children: React.ReactNode;
+  onClick?: () => void;
 }
-
 
 function Link({
-children
-}:LinkProps){
-
-return(
-<StyledLink>
-{children}
-</StyledLink>
-)
-
+  children,
+  onClick,
+}: LinkProps) {
+  return (
+    <StyledLink onClick={onClick}>
+      {children}
+    </StyledLink>
+  );
 }
-
 
 export default Link;
