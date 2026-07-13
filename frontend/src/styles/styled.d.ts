@@ -15,6 +15,7 @@ declare module "styled-components" {
       textSecondary: string;
 
       border: string;
+      error:string;
 
     success: string;
       warning : string;
@@ -32,7 +33,7 @@ declare module "styled-components" {
       lg: string;
       xl: string;
       xxl: string;
-    };
+    }; 
 
     spacing: {
       xs: string;

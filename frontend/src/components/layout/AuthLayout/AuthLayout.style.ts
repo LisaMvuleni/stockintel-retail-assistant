@@ -2,18 +2,14 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
+  width: 100%;
+  min-height: 100vh;
 
-  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  height:140vh;
-
-  display:flex;
-
-  overflow:hidden;
-
-  background:#fff8f8;
-
-
+  background: #fff8f8;
 `;
 
 
@@ -133,7 +129,7 @@ export const Logo = styled.div`
 //   font-weight:800;
 
 //   color:#111827;
-  
+
 
 
 // `;
@@ -265,47 +261,25 @@ export const StatValue = styled.strong`
 
 
 export const RightPanel = styled.section`
-
-  width:42%;
-
-
-  height:100vh;
-
-
-  display:flex;
-
-
-  justify-content:center;
-
-
-  align-items:center;
-
-
-  background:#A842B;
-
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-
 
 
 
 export const LoginCard = styled.div`
+  width: 460px;
+  background: #ffffff;
 
-  width:430px;
-  
-  height:650px; 
-  background:white;
+  padding: 48px;
 
+  border-radius: 20px;
 
-  border-radius:28px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
 
-
-  padding:45px;
-
-
-  box-shadow:
-
-    0 25px 70px rgba(15,23,42,.12);
-
-
+  display: flex;
+  flex-direction: column;
 `;
+
