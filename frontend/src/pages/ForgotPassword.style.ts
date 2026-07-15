@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ForgotPasswordContent = styled.div`
-  width: 80%;
+  width: 94%;
   display: flex;
   flex-direction: column;
 `;
@@ -19,16 +19,26 @@ export const HeaderSection = styled.div`
     margin-top: 8px;
     max-width: 250px;
     line-height: 1.6;
+    left:18px:
   }
 `;
 
 export const FormSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
 `;
 
 export const BackToLogin = styled.div`
   margin-top: 22px;
 `;
 
+ export const Container = styled.div`
+  width: 90%;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+`;

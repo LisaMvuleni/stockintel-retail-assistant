@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,12 +15,12 @@ export const BackgroundImage = styled.img`
   position: absolute;
   inset: 0;
 
-  width: 86%;
+  width: 109%;
   height: 100%;
 
   object-fit: cover;
 
-  opacity: 0.35;
+  opacity: 0.5;
 
   z-index: 1;
 

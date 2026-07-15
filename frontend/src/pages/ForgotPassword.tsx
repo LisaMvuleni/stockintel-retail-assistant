@@ -5,6 +5,7 @@ import LogoComponent from "../components/ui/Logo/Logo";
 import Input from "../components/ui/Input/Input";
 import Button from "../components/ui/Button/Button";
 import Link from "../components/ui/Link/Link";
+import { Container } from "./ForgotPassword.style";
 import { useNavigate } from "react-router-dom";
 import {
   ForgotPasswordContent,
@@ -52,6 +53,7 @@ function ForgotPassword()
     }
     return (
       <AuthLayout>
+        <Container>
   <ForgotPasswordContent>
 
     <LogoSection>
@@ -92,7 +94,9 @@ function ForgotPassword()
     </BackToLogin>
 
   </ForgotPasswordContent>
+  </Container>
 </AuthLayout>
+
     )
 }
 

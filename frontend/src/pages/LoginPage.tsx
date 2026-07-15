@@ -43,14 +43,16 @@ function LoginPage() {
     return isValid;
   }
 
-  const handleLogin = () => {
-    if (!validateForm()) {
-      return;
-    }
-
-    console.log("Email: ", email);
-    console.log("Password: ", password);
+ const handleLogin = () => {
+  if (!validateForm()) {
+    return;
   }
+
+  console.log("Email:", email);
+  console.log("Password:", password);
+
+  navigate("/products");
+};
 
   return (
     <AuthLayout>

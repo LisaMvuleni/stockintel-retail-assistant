@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
 import ForgotPassword from "./pages/ForgotPassword";
+import DashboardPage from "./pages/DashboardPage";
+import ProductsPage from "./pages/ProductsPage";
 
 function App() {
   return (
@@ -16,6 +18,11 @@ function App() {
           path="/forgot-password"
           element={<ForgotPassword />}
         />
+
+         <Route path="/dashboard" element={<DashboardPage />} />
+
+         <Route path="/products" element={<ProductsPage />} />
+
       </Routes>
     </BrowserRouter>
   );
