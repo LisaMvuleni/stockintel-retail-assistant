@@ -5,7 +5,7 @@ export const SidebarContainer = styled.aside`
 
   min-height: 100vh;
 
-  background: #FFF8F8;
+  background: #ffe8e8;
 
   border-right: 1px solid #F3E3E3;
 
@@ -20,7 +20,7 @@ export const SidebarContainer = styled.aside`
 
 export const LogoSection = styled.div`
   margin-bottom: 40px;
-  background: #FFF8F8;
+  background: #ffe8e8;
 `;
 
 export const Navigation = styled.nav`

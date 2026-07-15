@@ -2,6 +2,8 @@ import DashboardLayout from "../components/layout/DashboardLayout/DashboardLayou
 import PageHeader from "../components/layout/PageHeader/PageHeader";
 import SalesSummary from "../components/Sales/SalesSummary/SalesSummary";
 import SalesTable from "../components/Sales/SalesTable/SalesTable";
+import InventoryOverview from "../components/InventoryOverview/InventoryOverview";
+import { ContentRow } from "./Dashboard.style";
 
 function DashboardPage() {
 
@@ -18,11 +20,19 @@ function DashboardPage() {
 
     
      </SalesSummary>
+     <ContentRow>
        
       <SalesTable>
 
         
       </SalesTable>
+
+      <InventoryOverview>
+
+
+      </InventoryOverview>
+
+      </ContentRow>
     
     </DashboardLayout>
   )

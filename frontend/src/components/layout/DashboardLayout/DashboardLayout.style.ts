@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const LayoutContainer = styled.div`
   display: flex;
   min-height: 100vh;
-  background: #fff8f8;
+  background: #ffff;
   background-size: cover;
 `;
 
@@ -25,3 +25,4 @@ export const PageContent = styled.div`
 
   overflow-y: auto;
 `;
+
