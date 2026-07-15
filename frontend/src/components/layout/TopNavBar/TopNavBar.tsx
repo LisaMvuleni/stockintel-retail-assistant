@@ -4,7 +4,13 @@ import {
   RightSection,
   WelcomeText,
   UserAvatar,
+  NotificationButton,
+  NotificationBadge,
 } from "./TopNavBar.style.ts";
+
+
+
+import { Bell } from "lucide-react";
 
 function TopNavBar() {
   return (
@@ -16,13 +22,18 @@ function TopNavBar() {
         </WelcomeText>
       </LeftSection>
 
-      <RightSection>
+     <RightSection>
 
-        <UserAvatar>
-          NM
-        </UserAvatar>
+  <NotificationButton>
+    <Bell size={22} />
+    <NotificationBadge>3</NotificationBadge>
+  </NotificationButton>
 
-      </RightSection>
+  <UserAvatar>
+    NM
+  </UserAvatar>
+
+</RightSection>
 
     </NavBar>
   );

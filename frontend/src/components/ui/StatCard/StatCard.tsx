@@ -10,18 +10,20 @@ interface StatCardProps {
   icon: ReactNode;
   title: string;
   value: string;
+  iconBackground: string;
 }
 
 function StatCard({
   icon,
   title,
   value,
+  iconBackground,
 }: StatCardProps) {
   return (
     <Card>
-      <IconWrapper>
-        {icon}
-      </IconWrapper>
+     <IconWrapper $background={iconBackground}>
+      {icon}
+    </IconWrapper>
 
       <Title>{title}</Title>
 

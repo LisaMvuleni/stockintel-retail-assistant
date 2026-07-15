@@ -31,6 +31,55 @@ export const RightSection = styled.div`
   gap: 20px;
 `;
 
+export const NotificationButton = styled.button`
+  position: relative;
+
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: ${({ theme }) => theme.colors.white};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  color: ${({ theme }) => theme.colors.text};
+
+  transition: 0.2s ease;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+`;
+
+export const NotificationBadge = styled.span`
+  position: absolute;
+
+  top: -2px;
+  right: -2px;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: ${({ theme }) => theme.colors.primary};
+
+  color: white;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const WelcomeText = styled.h3`
   margin: 0;
 

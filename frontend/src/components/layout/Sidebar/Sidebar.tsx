@@ -8,6 +8,8 @@ import {
   LogoutSection,
 } from "./Sidebar.style";
 
+import { NavLink } from "react-router-dom";
+
 import {
   LayoutDashboard,
   Package,
@@ -31,16 +33,20 @@ function Sidebar() {
       </LogoSection>
 
       <Navigation>
-
+    
+       <NavLink to="/dashboard">
        <NavItem>
           <LayoutDashboard size={20} />
           Dashboard
         </NavItem>
+        </NavLink>
 
+        <NavLink to="/products">
         <NavItem>
           <Package size={20} />
           Products
         </NavItem>
+        </NavLink>
 
         <NavItem>
           <Sparkles size={20} />

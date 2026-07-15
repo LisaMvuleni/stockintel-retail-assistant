@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
+
 export const LayoutContainer = styled.div`
   display: flex;
-
-  width: 100%;
-
   min-height: 100vh;
-
-  background: #f8fafc;
+  background: #fff8f8;
+  background-size: cover;
 `;
 
 export const MainContent = styled.main`

@@ -9,7 +9,10 @@ export const Card = styled.div`
 
   padding: 24px;
 
-  min-height: 100px;
+  min-height: 80px;
+  height:150px;
+
+  width: 100%;
 
   display: flex;
 
@@ -49,18 +52,15 @@ export const Value = styled.h3`
 `;
 
 
-export const IconWrapper = styled.div`
-  width: 52px;
-  height: 52px;
+export const IconWrapper = styled.div<{ $background: string }>`
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
 
-  border-radius: 50%;
+  background: ${({ $background }) => $background};
 
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  background: #fff1f2;
-  color: #dc2626;
-
-  margin-bottom: 14px;
+  justify-content: center;
 `;
+

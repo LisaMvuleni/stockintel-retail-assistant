@@ -33,7 +33,7 @@ export const BackToLogin = styled.div`
   margin-top: 22px;
 `;
 
- export const Container = styled.div`
+export const Container = styled.div`
   width: 90%;
   min-height: 50vh;
   display: flex;
