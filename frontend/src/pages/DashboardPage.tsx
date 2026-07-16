@@ -4,7 +4,8 @@ import SalesSummary from "../components/Sales/SalesSummary/SalesSummary";
 import QuickActions from "../components/QuickActions/QuickActions";
 import SalesTable from "../components/Sales/SalesTable/SalesTable";
 import InventoryOverview from "../components/InventoryOverview/InventoryOverview";
-import { ContentRow } from "./Dashboard.style";
+import { BottomRow, ContentRow, TopRow } from "./Dashboard.style";
+import LowStockTable from "../components/Stock/Stock";
 
 function DashboardPage() {
   return (
@@ -18,11 +19,21 @@ function DashboardPage() {
       <SalesSummary />
 
       <QuickActions />
+    
+      <TopRow>
+          <SalesTable />
+          <LowStockTable/>
+      </TopRow>
 
-      <ContentRow>
+       <BottomRow>
+           <InventoryOverview/>
+       </BottomRow>
+
+      {/* <ContentRow>
         <SalesTable />
+       
         <InventoryOverview />
-      </ContentRow>
+      </ContentRow> */}
 
     </DashboardLayout>
   );
