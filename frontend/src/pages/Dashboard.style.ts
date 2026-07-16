@@ -8,13 +8,12 @@ export const ContentRow = styled.div`
   align-items: start;
 `;
 
-
-
 export const TopRow = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: px;
-    margin-top: 24px;
+    gap: 30px;
+    
+    margin-top: ;
 `;
 
 export const BottomRow = styled.div`

@@ -51,7 +51,7 @@ function LoginPage() {
   console.log("Email:", email);
   console.log("Password:", password);
 
-  navigate("/products");
+  navigate("/dashboard");
 };
 
   return (

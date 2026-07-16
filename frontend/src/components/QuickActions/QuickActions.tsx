@@ -10,14 +10,6 @@ const QuickActions = () => {
         <Container>
 
             <QuickActionCard
-                title="Price Check"
-                description="Check product prices"
-                icon={<FiTag />}
-                color="#EF4444"
-                path="/price-check"
-            />
-
-            <QuickActionCard
                 title="Products"
                 description="View all products"
                 icon={<FiBox />}

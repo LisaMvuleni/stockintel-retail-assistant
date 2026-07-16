@@ -4,39 +4,37 @@ import SalesSummary from "../components/Sales/SalesSummary/SalesSummary";
 import QuickActions from "../components/QuickActions/QuickActions";
 import SalesTable from "../components/Sales/SalesTable/SalesTable";
 import InventoryOverview from "../components/InventoryOverview/InventoryOverview";
-import { BottomRow, ContentRow, TopRow } from "./Dashboard.style";
+import { BottomRow, TopRow } from "./Dashboard.style";
 import LowStockTable from "../components/Stock/Stock";
+
+import { PageContent } from "../components/layout/DashboardLayout/DashboardLayout.style";
 
 function DashboardPage() {
   return (
     <DashboardLayout>
+      <PageContent>
 
-      <PageHeader
-        title="Dashboard"
-        description="Here's what's happening in your store today."
-      />
+        <PageHeader
+          title="Dashboard"
+          description="Here's what's happening in your store today."
+        />
 
-      <SalesSummary />
+        <SalesSummary />
 
-      <QuickActions />
-    
-      <TopRow>
+        <QuickActions />
+
+        <TopRow>
           <SalesTable />
-          <LowStockTable/>
-      </TopRow>
+          <LowStockTable />
+        </TopRow>
 
-       <BottomRow>
-           <InventoryOverview/>
-       </BottomRow>
+        <BottomRow>
+          <InventoryOverview />
+        </BottomRow>
 
-      {/* <ContentRow>
-        <SalesTable />
-       
-        <InventoryOverview />
-      </ContentRow> */}
-
+      </PageContent>
     </DashboardLayout>
   );
-}
+};
 
 export default DashboardPage;

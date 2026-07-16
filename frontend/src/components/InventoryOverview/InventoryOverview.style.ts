@@ -10,12 +10,13 @@ export const Card = styled.div`
 
 export const Title = styled.h3`
   margin-bottom: 20px;
+
 `;
 
 export const ChartContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: px;
+  gap: 20px;
   width:100%;
 `;
 
@@ -51,4 +52,5 @@ export const BottomSection = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   margin-top: 24px;
+  
 `;
