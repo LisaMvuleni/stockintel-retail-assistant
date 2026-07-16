@@ -4,7 +4,7 @@ export const NavBar = styled.header`
   height: 80px;
 
   background: ${({ theme }) => theme.colors.white};
-  background: #ffff;
+  background: #ffe8e8;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 

@@ -46,7 +46,8 @@ export const TableCard = styled.div`
   background: white;
   border-radius: 20px;
   padding: 18px;
-  width: 50%;
+  width: 100%;
+  height:100%;
   box-shadow: 0 8px 24px rgba(15,23,42,0.06);
 `;
 
