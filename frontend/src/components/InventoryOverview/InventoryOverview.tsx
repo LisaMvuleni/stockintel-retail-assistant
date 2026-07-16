@@ -89,7 +89,7 @@ function InventoryOverview() {
                                 fill={entry.color}
                                 />
                             ))}
-                            </Pie>
+                            </Pie>    
 
                     </PieChart>
                 </ResponsiveContainer>
