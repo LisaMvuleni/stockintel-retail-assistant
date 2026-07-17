@@ -10,6 +10,8 @@ import {
 
 import ChatMessage from "../ChatMessage";
 
+import ChatInput from "../ChatInput";
+
 function ChatWindow() {
   return (
     <Card>
@@ -46,6 +48,8 @@ function ChatWindow() {
             />
 
         </Messages>
+
+        <ChatInput/>
 
     </Card>
   );
