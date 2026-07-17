@@ -4,11 +4,12 @@ export const Card = styled.div`
   background: ${({ theme }) => theme.colors.white};
   border-radius: 24px;
   padding: 24px;
-  min-height: 650px;
-  box-shadow: 0 10px 30px rgba(15,23,42,.08);
+  height: 78vh;
 
   display: flex;
   flex-direction: column;
+
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 `;
 
 export const Header = styled.div`
@@ -51,24 +52,7 @@ export const Status = styled.span`
 `;
 
 export const Messages = styled.div`
-  margin-top:32px;
-
-  h3{
-    margin-bottom:12px;
-  }
-
-  p{
-    line-height:1.7;
-    color:#6B7280;
-  }
-
-  ul{
-    margin:18px 0;
-    padding-left:24px;
-  }
-
-  li{
-    margin-bottom:10px;
-    color:#374151;
-  }
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 0;
 `;
