@@ -1,6 +1,6 @@
 import QuickActionCard from "../QuickActionCard/QuickActionCard";
 
-import { FiShoppingCart, FiBox, FiTag } from "react-icons/fi";
+import { FiShoppingCart, FiBox } from "react-icons/fi";
 import { RiRobot2Line } from "react-icons/ri";
 
 import { Container } from "./QuickActions.style";
