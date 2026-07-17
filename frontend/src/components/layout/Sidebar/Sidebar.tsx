@@ -47,11 +47,13 @@ function Sidebar() {
           Products
         </NavItem>
         </NavLink>
-
+        
+        <NavLink to="/aiassistant">
         <NavItem>
           <Sparkles size={20} />
           AI Assistant
         </NavItem>
+        </NavLink>
 
         <NavItem>
           <BarChart3 size={20} />
