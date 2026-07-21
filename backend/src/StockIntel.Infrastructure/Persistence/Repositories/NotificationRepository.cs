@@ -1,0 +1,36 @@
+using Microsoft.EntityFrameworkCore;
+using StockIntel.Application.Common.Interfaces;
+using StockIntel.Domain.Entities;
+
+namespace StockIntel.Infrastructure.Persistence.Repositories;
+
+public class NotificationRepository : INotificationRepository
+{
+    private readonly ApplicationDbContext _context;
+
+    public NotificationRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<IEnumerable<Notification>> GetAllAsync()
+    {
+        return await _context.Notifications.ToListAsync();
+    }
+
+    public async Task<Notification?> GetByIdAsync(Guid id)
+    {
+        return await _context.Notifications.FindAsync(id);
+    }
+
+    public async Task AddAsync(Notification notification)
+    {
+        await _context.Notifications.AddAsync(notification);
+    }
+
+    public Task UpdateAsync(Notification notification)
+    {
+        _context.Notifications.Update(notification);
+        return Task.CompletedTask;
+    }
+}
