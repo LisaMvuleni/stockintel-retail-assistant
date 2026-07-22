@@ -12,7 +12,7 @@ public class UserRepository : IUserRepository
     {
         _context = context;
     }
-
+  
     public async Task<IEnumerable<User>> GetAllAsync()
     {
         return await _context.Users.ToListAsync();
@@ -34,15 +34,29 @@ public class UserRepository : IUserRepository
         await _context.Users.AddAsync(user);
     }
 
-    public Task UpdateAsync(User user)
+    public async Task UpdateAsync(Guid id)
     {
+        {
+        var user = await _context.Users.FindAsync(id);
+
+        if (user == null)
+        {
+            return;
+        }
+
         _context.Users.Update(user);
-        return Task.CompletedTask;
+    }
     }
 
-    public Task DeleteAsync(User user)
+   public async Task DeleteAsync(Guid id)
     {
+        var user = await _context.Users.FindAsync(id);
+
+        if (user == null)
+        {
+            return;
+        }
+
         _context.Users.Remove(user);
-        return Task.CompletedTask;
     }
 }

@@ -44,8 +44,6 @@ public class ProductRepository : IProductRepository
         }
 
         _context.Products.Remove(product);
-
-        await _context.SaveChangesAsync();
     }
 
 }

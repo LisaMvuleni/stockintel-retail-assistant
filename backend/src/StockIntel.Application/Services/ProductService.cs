@@ -1,16 +1,19 @@
 using StockIntel.Application.Interfaces.Services;
 using StockIntel.Application.Interfaces;
 using StockIntel.Domain.Entities;
-namespace StockIntel.Application.Services;
 using StockIntel.Application.Common.Interfaces;
+
+namespace StockIntel.Application.Services;
 
 public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public ProductService(IProductRepository productRepository)
+    public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
     {
         _productRepository = productRepository;
+        _unitOfWork = unitOfWork;
     }
 
 
@@ -29,7 +32,7 @@ public class ProductService : IProductService
     public async Task<Product> CreateProductAsync(Product product)
     {
         await _productRepository.AddAsync(product);
-
+        await _unitOfWork.SaveChangesAsync();
         return product;
     }
 
@@ -37,13 +40,13 @@ public class ProductService : IProductService
     public async Task UpdateProductAsync(Product product)
     {
         await _productRepository.UpdateAsync(product);
+        await _unitOfWork.SaveChangesAsync();
     }
 
-    
-    
 
     public async Task DeleteAsync(Guid id)
     {
         await _productRepository.DeleteAsync(id);
+        await _unitOfWork.SaveChangesAsync();
     }
 }
