@@ -1,8 +1,8 @@
 using StockIntel.Domain.Entities;
 
-namespace StockIntel.Application.Common.Interfaces;
+namespace StockIntel.Application.Interfaces.Services;
 
-public interface ICategoryRepository
+public interface ICategoryService
 {
     Task<IEnumerable<Category>> GetAllAsync();
     Task<Category?> GetByIdAsync(Guid id);

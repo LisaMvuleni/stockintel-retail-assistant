@@ -1,10 +1,9 @@
 using StockIntel.Domain.Entities;
+namespace StockIntel.Application.Interfaces.Services;
 
-namespace StockIntel.Application.Common.Interfaces;
-
-public interface IUserRepository
+public interface IUserService
 {
-    Task<User?> GetByIdAsync(Guid id);
+     Task<User?> GetByIdAsync(Guid id);
     Task<User?> GetByEmailAsync(string email);
     Task<IEnumerable<User>> GetAllAsync();
     Task AddAsync(User user);
