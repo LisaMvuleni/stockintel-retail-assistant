@@ -19,7 +19,7 @@ public class ProductService : IProductService
 
     public async Task<IEnumerable<Product>> GetProductsAsync()
     {
-        return await _productRepository.GetAllAsync();
+        return await _productRepository.GetAllAsync();  
     }
 
 
