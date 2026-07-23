@@ -46,14 +46,14 @@ public class CategoryController : ControllerBase
             category);  
     }
 
-   [HttpPut]
+   [HttpPut("{id:guid}")]
    public async Task<ActionResult> UpdateAsync(Category category)
     {
         await _categoryService.UpdateAsync(category);
         return NoContent();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult>DeleteAsync(Guid id)
     {
         await _categoryService.DeleteAsync(id);
