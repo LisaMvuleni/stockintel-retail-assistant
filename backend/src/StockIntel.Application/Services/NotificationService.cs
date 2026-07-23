@@ -4,7 +4,7 @@ using StockIntel.Domain.Entities;
 
 namespace StockIntel.Application.Services;
 
-public class NotificationService : INotificationRepository
+public class NotificationService : INotificationService
 {
     private readonly INotificationRepository _notificationRepository;
     private readonly IUnitOfWork _unitOfWork;
