@@ -31,7 +31,7 @@ public class Product
     // Foreign Keys
     public Guid CategoryId { get; set; }
 
-    public Guid SupplierId { get; set; }
+    public Guid? SupplierId { get; set; }
 
     // Navigation Properties
     public Category Category { get; set; } = null!;
