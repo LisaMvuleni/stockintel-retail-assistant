@@ -27,7 +27,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("email/{email}")]
-    public async Task <ActionResult<User>> GetByEmailAsync(string email)
+    public async Task<ActionResult<User>> GetByEmailAsync(string email)
     {
         var user = await _userService.GetByEmailAsync(email);
         if (user == null)
@@ -35,37 +35,43 @@ public class UserController : ControllerBase
             return NotFound();
         }
 
-        return Ok (user);
+        return Ok(user);
     }
 
 
-  [HttpGet]
-  public async Task<ActionResult<IEnumerable<User>>> GetAllAsync()
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<User>>> GetAllAsync()
     {
         var users = await _userService.GetAllAsync();
         return Ok(users);
     }
-    
-  
-  [HttpPost]
-  public async Task<ActionResult>AddAsync(User user)
+
+
+    [HttpPost]
+    public async Task<ActionResult> AddAsync(User user)
     {
         await _userService.AddAsync(user);
         return CreatedAtAction(
             nameof(GetByIdAsync),
-            new {id = user.UserId},
+            new { id = user.UserId },
             user);
     }
 
-  [HttpPut("{id:guid}")]
-  public async Task<ActionResult>UpdateAsync(Guid id)
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult> UpdateAsync(Guid id, User user)
     {
-        await _userService.UpdateAsync(id);
+        if (id != user.UserId)
+        {
+            return BadRequest("The route ID does not match the user ID.");
+        }
+
+        await _userService.UpdateAsync(id, user);
+
         return NoContent();
     }
 
- [HttpDelete("{id:guid}")]
- public async Task <ActionResult> DeleteAsync(Guid id)
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> DeleteAsync(Guid id)
     {
         await _userService.DeleteAsync(id);
         return NoContent();

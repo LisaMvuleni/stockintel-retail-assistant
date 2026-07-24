@@ -34,19 +34,21 @@ public class UserRepository : IUserRepository
         await _context.Users.AddAsync(user);
     }
 
-    public async Task UpdateAsync(Guid id)
+   public async Task UpdateAsync(Guid id, User user)
+ {
+    var existingUser = await _context.Users.FindAsync(id);
+
+    if (existingUser == null)
     {
-        {
-        var user = await _context.Users.FindAsync(id);
-
-        if (user == null)
-        {
-            return;
-        }
-
-        _context.Users.Update(user);
+        return;
     }
-    }
+
+    existingUser.FirstName = user.FirstName;
+    existingUser.LastName = user.LastName;
+    existingUser.Email = user.Email;
+
+    _context.Users.Update(existingUser);
+ }
 
    public async Task DeleteAsync(Guid id)
     {

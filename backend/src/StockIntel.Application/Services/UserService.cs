@@ -9,7 +9,6 @@
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-
     public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
@@ -40,9 +39,9 @@
         await _unitOfWork.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(Guid id) 
+    public async Task UpdateAsync(Guid id, User user) 
     {
-        await _userRepository.UpdateAsync(id);
+        await _userRepository.UpdateAsync(id, user);
         await _unitOfWork.SaveChangesAsync();
     }
     public async Task DeleteAsync(Guid id)
