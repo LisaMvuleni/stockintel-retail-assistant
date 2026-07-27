@@ -62,7 +62,7 @@ public class SaleController : ControllerBase
             SaleItems = sale.SaleItems.Select(item => new SaleItemDto
             {
                 ProductId = item.ProductId,
-                Quantity = item.Quantity,
+                Quantity = item.Quantity, 
                 UnitPrice = item.UnitPrice,
                 TotalPrice = item.TotalPrice
             }).ToList()

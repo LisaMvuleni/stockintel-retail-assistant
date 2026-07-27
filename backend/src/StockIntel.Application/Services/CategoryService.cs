@@ -1,6 +1,7 @@
 using StockIntel.Application.Interfaces.Services;
 using StockIntel.Domain.Entities;
 using StockIntel.Application.Common.Interfaces;
+using StockIntel.Application.DTOs.Category;
 
 namespace StockIntel.Application.Services;
 
@@ -15,26 +16,48 @@ public class CategoryService : ICategoryService
         _unitOfWork = unitOfWork;
     }
 
-       public async Task<IEnumerable<Category>>GetAllAsync()
+    public async Task<IEnumerable<CategoryDto>> GetAllAsync()
     {
-        return await _categoryRepository.GetAllAsync();
+        var categories = await _categoryRepository.GetAllAsync();
+
+        return categories.Select(category => new CategoryDto
+        {
+            Id = category.Id,
+            Name = category.Name,
+            Description = category.Description,
+            IsActive = category.IsActive,
+            CreatedAt = category.CreatedAt,
+            UpdatedAt = category.UpdatedAt
+        });
     }
 
-    public async Task<Category?>GetByIdAsync(Guid id)
+   public async Task<CategoryDto?> GetByIdAsync(Guid id)
     {
-        return await _categoryRepository.GetByIdAsync(id);
+        var category = await _categoryRepository.GetByIdAsync(id);
+
+        if (category == null)
+            return null;
+
+        return new CategoryDto
+        {
+            Id = category.Id,
+            Name = category.Name,
+            Description = category.Description,
+            IsActive = category.IsActive,
+            CreatedAt = category.CreatedAt,
+            UpdatedAt = category.UpdatedAt
+        };
     }
 
-    public async Task <Category> AddAsync(Category category)
+   public async Task AddAsync(Category category)
     {
         await _categoryRepository.AddAsync(category);
         await _unitOfWork.SaveChangesAsync();
-        return category;
     }
 
-    public async Task UpdateAsync(Category category)
+   public async Task UpdateAsync(Guid id, Category category)
     {
-        await _categoryRepository.UpdateAsync (category);
+        await _categoryRepository.UpdateAsync(category);
         await _unitOfWork.SaveChangesAsync();
     }
 
@@ -42,10 +65,5 @@ public class CategoryService : ICategoryService
     {
         await _categoryRepository.DeleteAsync(id);
         await _unitOfWork.SaveChangesAsync();
-    }
-
-    Task ICategoryService.AddAsync(Category category)
-    {
-        return AddAsync(category);
     }
 }
