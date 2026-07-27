@@ -1,16 +1,17 @@
+using StockIntel.Application.DTOs.Product;
 using StockIntel.Domain.Entities;
 
 namespace StockIntel.Application.Interfaces.Services;
 
 public interface IProductService
 {
-    Task<IEnumerable<Product>> GetProductsAsync();
+    Task<IEnumerable<ProductDto>> GetProductsAsync();
 
-    Task<Product?> GetProductByIdAsync(Guid id);
+    Task<ProductDto?> GetProductByIdAsync(Guid id);
 
-    Task<Product> CreateProductAsync(Product product);
+    Task AddAsync(Product product);
 
-    Task UpdateProductAsync(Product product);
+    Task UpdateAsync(Guid id, Product product);
 
     Task DeleteAsync(Guid id);
 }

@@ -2,6 +2,7 @@ using StockIntel.Application.Interfaces.Services;
 using StockIntel.Application.Interfaces;
 using StockIntel.Domain.Entities;
 using StockIntel.Application.Common.Interfaces;
+using StockIntel.Application.DTOs.Product;
 
 namespace StockIntel.Application.Services;
 
@@ -17,31 +18,71 @@ public class ProductService : IProductService
     }
 
 
-    public async Task<IEnumerable<Product>> GetProductsAsync()
+    public async Task<IEnumerable<ProductDto>> GetProductsAsync()
+{
+    var products = await _productRepository.GetAllAsync();
+
+    return products.Select(product => new ProductDto
     {
-        return await _productRepository.GetAllAsync();  
-    }
+        Id = product.Id,
+        Name = product.Name,
+        SKU = product.SKU,
+        Barcode = product.Barcode,
+        Description = product.Description,
+        CostPrice = product.CostPrice,
+        SellingPrice = product.SellingPrice,
+        QuantityInStock = product.QuantityInStock,
+        ReorderLevel = product.ReorderLevel,
+        ImageUrl = product.ImageUrl,
+        IsActive = product.IsActive,
+        CreatedAt = product.CreatedAt,
+        UpdatedAt = product.UpdatedAt,
+        CategoryId = product.CategoryId,
+        SupplierId = product.SupplierId
+    });
+}
 
 
-    public async Task<Product?> GetProductByIdAsync(Guid id)
+    public async Task<ProductDto?> GetProductByIdAsync(Guid id)
+{
+    var product = await _productRepository.GetByIdAsync(id);
+
+    if (product == null)
+        return null;
+
+    return new ProductDto
     {
-        return await _productRepository.GetByIdAsync(id);
-    }
+        Id = product.Id,
+        Name = product.Name,
+        SKU = product.SKU,
+        Barcode = product.Barcode,
+        Description = product.Description,
+        CostPrice = product.CostPrice,
+        SellingPrice = product.SellingPrice,
+        QuantityInStock = product.QuantityInStock,
+        ReorderLevel = product.ReorderLevel,
+        ImageUrl = product.ImageUrl,
+        IsActive = product.IsActive,
+        CreatedAt = product.CreatedAt,
+        UpdatedAt = product.UpdatedAt,
+        CategoryId = product.CategoryId,
+        SupplierId = product.SupplierId
+    };
+}
 
 
-    public async Task<Product> CreateProductAsync(Product product)
-    {
-        await _productRepository.AddAsync(product);
-        await _unitOfWork.SaveChangesAsync();
-        return product;
-    }
+    public async Task AddAsync(Product product)
+{
+    await _productRepository.AddAsync(product);
+    await _unitOfWork.SaveChangesAsync();
+}
 
 
-    public async Task UpdateProductAsync(Product product)
-    {
-        await _productRepository.UpdateAsync(product);
-        await _unitOfWork.SaveChangesAsync();
-    }
+   public async Task UpdateAsync(Guid id, Product product)
+{
+    await _productRepository.UpdateAsync(product);
+    await _unitOfWork.SaveChangesAsync();
+}
 
 
     public async Task DeleteAsync(Guid id)
