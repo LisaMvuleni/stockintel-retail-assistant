@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StockIntel.Application.Interfaces.Services;
 using StockIntel.Domain.Entities;
-
+using StockIntel.Application.DTOs.User;
 namespace StockIntel.API.Controllers;
 
 [ApiController]
@@ -16,7 +16,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<User>> GetByIdAsync(Guid id)
+    public async Task<ActionResult<UserDto>>GetByIdAsync(Guid id)
     {
         var user = await _userService.GetByIdAsync(id);
         if (user == null)
@@ -27,7 +27,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("email/{email}")]
-    public async Task<ActionResult<User>> GetByEmailAsync(string email)
+    public async Task<ActionResult<UserDto>> GetByEmailAsync(string email)
     {
         var user = await _userService.GetByEmailAsync(email);
         if (user == null)
@@ -40,7 +40,7 @@ public class UserController : ControllerBase
 
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetAllAsync()
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetAllAsync()
     {
         var users = await _userService.GetAllAsync();
         return Ok(users);
@@ -48,22 +48,47 @@ public class UserController : ControllerBase
 
 
     [HttpPost]
-    public async Task<ActionResult> AddAsync(User user)
+    public async Task<ActionResult<UserDto>> AddAsync(CreateUserDto dto)
     {
+        var user = new User
+        {
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            Email = dto.Email,
+            PasswordHash = dto.Password,
+            Role = dto.Role,
+            IsActive = dto.IsActive
+        };
+
         await _userService.AddAsync(user);
-        return CreatedAtAction(
-            nameof(GetByIdAsync),
-            new { id = user.UserId },
-            user);
+
+        var userDto = new UserDto
+        {
+            UserId = user.UserId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            Role = user.Role,
+            IsActive = user.IsActive,
+            CreatedAt = user.CreatedAt
+        };
+
+        return Ok(userDto);
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult> UpdateAsync(Guid id, User user)
+    public async Task<ActionResult> UpdateAsync(Guid id, UpdateUserDto dto)     
     {
-        if (id != user.UserId)
+        var user = new User
         {
-            return BadRequest("The route ID does not match the user ID.");
-        }
+            UserId = id,
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            Email = dto.Email,
+            PasswordHash = dto.Password,
+            Role = dto.Role,
+            IsActive = dto.IsActive
+        };
 
         await _userService.UpdateAsync(id, user);
 

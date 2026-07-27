@@ -1,7 +1,7 @@
  using StockIntel.Application.Interfaces.Services;
  using StockIntel.Domain.Entities;
  using StockIntel.Application.Common.Interfaces;
-
+using StockIntel.Application.DTOs.User;
  namespace StockIntel.Application.Services;
 
  public class UserService : IUserService
@@ -16,22 +16,59 @@
     }
 
     
-    public async Task<User?> GetByIdAsync (Guid id)
+    public async Task<UserDto?> GetByIdAsync(Guid id)
+{
+    var user = await _userRepository.GetByIdAsync(id);
+
+    if (user == null)
+        return null;
+
+    return new UserDto
     {
-        return await _userRepository.GetByIdAsync(id);
+        UserId = user.UserId,
+        FirstName = user.FirstName,
+        LastName = user.LastName,
+        Email = user.Email,
+        Role = user.Role,
+        IsActive = user.IsActive,
+        CreatedAt = user.CreatedAt
+    };
+}
 
-    }
 
+    public async Task<UserDto?> GetByEmailAsync(string email)
+{
+    var user = await _userRepository.GetByEmailAsync(email);
 
-    public async Task<User?>GetByEmailAsync(string email)
+    if (user == null)
+        return null;
+
+    return new UserDto
     {
-        return await _userRepository.GetByEmailAsync(email);
-    }
+        UserId = user.UserId,
+        FirstName = user.FirstName,
+        LastName = user.LastName,
+        Email = user.Email,
+        Role = user.Role,
+        IsActive = user.IsActive,
+        CreatedAt = user.CreatedAt
+    };
+}
+    public async Task<IEnumerable<UserDto>> GetAllAsync()
+{
+    var users = await _userRepository.GetAllAsync();
 
-    public async Task <IEnumerable<User>> GetAllAsync()
+    return users.Select(user => new UserDto
     {
-        return await _userRepository.GetAllAsync();
-    }
+        UserId = user.UserId,
+        FirstName = user.FirstName,
+        LastName = user.LastName,
+        Email = user.Email,
+        Role = user.Role,
+        IsActive = user.IsActive,
+        CreatedAt = user.CreatedAt
+    });
+}
 
     public async Task AddAsync (User user)
     {
