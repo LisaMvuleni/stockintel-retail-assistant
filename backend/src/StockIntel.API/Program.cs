@@ -4,6 +4,7 @@ using StockIntel.Application.Services;
 using FluentValidation;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 using StockIntel.Application.Validators;
+using StockIntel.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
     
     app.MapOpenApi();
 }
+ 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
