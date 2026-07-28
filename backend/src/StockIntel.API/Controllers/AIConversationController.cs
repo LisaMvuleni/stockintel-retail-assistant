@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using StockIntel.Application.DTOs.AIConversation;
 using StockIntel.Application.Interfaces.Services;
 using StockIntel.Domain.Entities;
 
@@ -15,37 +16,66 @@ public class AIConversationController : ControllerBase
         _aiConversationService = aiConversationService;
     }
 
-    // GET: api/AIConversation
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AIConversation>>> GetAllAsync()
+    public async Task<ActionResult<IEnumerable<AIConversationDto>>> GetAllAsync()
     {
         var conversations = await _aiConversationService.GetAllAsync();
         return Ok(conversations);
     }
 
-    // GET: api/AIConversation/{id}
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<AIConversation>> GetByIdAsync(Guid id)
+    public async Task<ActionResult<AIConversationDto>> GetByIdAsync(Guid id)
     {
         var conversation = await _aiConversationService.GetByIdAsync(id);
 
         if (conversation == null)
-        {
             return NotFound();
-        }
 
         return Ok(conversation);
     }
 
-    // POST: api/AIConversation
     [HttpPost]
-    public async Task<ActionResult> AddAsync(AIConversation aiConversation)
+    public async Task<ActionResult<AIConversationDto>> AddAsync(CreateAIConversationDto dto)
     {
-        await _aiConversationService.AddAsync(aiConversation);
+        var conversation = new AIConversation
+        {
+            UserId = dto.UserId
+        };
+
+        await _aiConversationService.AddAsync(conversation);
+
+        var conversationDto = new AIConversationDto
+        {
+            Id = conversation.Id,
+            UserId = conversation.UserId,
+            CreatedAt = conversation.CreatedAt
+        };
 
         return CreatedAtAction(
             nameof(GetByIdAsync),
-            new { id = aiConversation.Id },
-            aiConversation);
+            new { id = conversationDto.Id },
+            conversationDto);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult> UpdateAsync(Guid id, UpdateAIConversationDto dto)
+    {
+        var conversation = new AIConversation
+        {
+            Id = id,
+            UserId = dto.UserId
+        };
+
+        await _aiConversationService.UpdateAsync(id, conversation);
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> DeleteAsync(Guid id)
+    {
+        await _aiConversationService.DeleteAsync(id);
+
+        return NoContent();
     }
 }

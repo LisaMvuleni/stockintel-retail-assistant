@@ -28,9 +28,27 @@ public class NotificationRepository : INotificationRepository
         await _context.Notifications.AddAsync(notification);
     }
 
-    public Task UpdateAsync(Notification notification)
+    public async Task UpdateAsync(Guid id, Notification notification)
     {
-        _context.Notifications.Update(notification);
-        return Task.CompletedTask;
+        var existingNotification = await _context.Notifications.FindAsync(id);
+
+        if (existingNotification == null)
+            return;
+
+        existingNotification.Title = notification.Title;
+        existingNotification.Message = notification.Message;
+        existingNotification.IsRead = notification.IsRead;
+
+        _context.Notifications.Update(existingNotification);
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var notification = await _context.Notifications.FindAsync(id);
+
+        if (notification != null)
+        {
+            _context.Notifications.Remove(notification);
+        }
     }
 }

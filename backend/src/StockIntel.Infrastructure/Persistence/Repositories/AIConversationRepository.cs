@@ -27,4 +27,26 @@ public class AIConversationRepository : IAIConversationRepository
     {
         await _context.AIConversations.AddAsync(conversation);
     }
+
+    public async Task UpdateAsync(Guid id, AIConversation conversation)
+    {
+        var existingConversation = await _context.AIConversations.FindAsync(id);
+
+        if (existingConversation == null)
+            return;
+
+        existingConversation.UserId = conversation.UserId;
+
+        _context.AIConversations.Update(existingConversation);
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var conversation = await _context.AIConversations.FindAsync(id);
+
+        if (conversation != null)
+        {
+            _context.AIConversations.Remove(conversation);
+        }
+    }
 }
