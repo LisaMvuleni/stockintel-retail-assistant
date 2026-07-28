@@ -1,3 +1,4 @@
+namespace  StockIntel.Application.DTOs.AIConversation;
 public class UpdateAIConversationDto
 {
     public Guid UserId { get; set; }
