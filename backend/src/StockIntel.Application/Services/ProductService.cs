@@ -3,6 +3,7 @@ using StockIntel.Application.Interfaces;
 using StockIntel.Domain.Entities;
 using StockIntel.Application.Common.Interfaces;
 using StockIntel.Application.DTOs.Product;
+using StockIntel.Application.Exceptions;
 
 namespace StockIntel.Application.Services;
 
