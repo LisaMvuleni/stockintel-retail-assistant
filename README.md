@@ -174,20 +174,4 @@ StockIntel
 | Name | Role |
 |------|------|
 | **Lisa Mvuleni** | Software Developer |
-| **Yanda Kiviet** | Quality Engineer |
-
----
-
-# 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
-<div align="center">
-
-### ⭐ If you found this project interesting, consider giving it a star!
-
-Made with ❤️ using React, ASP.NET Core, PostgreSQL, RabbitMQ, Docker & Google Gemini.
-
-</div>
+| **Yanda Kiviet** | Quality Engineer 
