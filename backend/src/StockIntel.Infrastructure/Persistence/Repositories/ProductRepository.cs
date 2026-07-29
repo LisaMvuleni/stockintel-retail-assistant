@@ -46,4 +46,14 @@ public class ProductRepository : IProductRepository
         _context.Products.Remove(product);
     }
 
+    public async Task<bool> SKUExistsAsync(string sku)
+    {
+        return await _context.Products.AnyAsync(p => p.SKU == sku);
+    }
+
+    public async Task<bool> BarcodeExistsAsync(string barcode)
+    {
+        return await _context.Products.AnyAsync(p => p.Barcode == barcode);
+    }
+
 }

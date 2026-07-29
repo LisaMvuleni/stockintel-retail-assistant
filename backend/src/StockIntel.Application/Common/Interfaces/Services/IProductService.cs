@@ -13,5 +13,6 @@ public interface IProductService
 
     Task UpdateAsync(Guid id, Product product);
 
+
     Task DeleteAsync(Guid id);
 }

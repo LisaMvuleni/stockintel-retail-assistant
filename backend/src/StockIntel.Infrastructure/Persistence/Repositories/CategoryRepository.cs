@@ -47,4 +47,14 @@ public class CategoryRepository : ICategoryRepository
 
         await _context.SaveChangesAsync();
     }
+
+    public async Task<bool> CategoryExistsAsync(Guid categoryId)
+    {
+        return await _context.Categories.AnyAsync(c => c.Id == categoryId);
+    }
+    public async Task<bool> CategoryNameExistsAsync(string name)
+    {
+        return await _context.Categories
+            .AnyAsync(c => c.Name.ToLower() == name.ToLower());
+    }
 }

@@ -2,12 +2,14 @@ using StockIntel.Application.Interfaces.Services;
 using StockIntel.Domain.Entities;
 using StockIntel.Application.Common.Interfaces;
 using StockIntel.Application.DTOs.Category;
+using StockIntel.Application.Exceptions;
 
 namespace StockIntel.Application.Services;
 
+
 public class CategoryService : ICategoryService
 {
-    public readonly ICategoryRepository _categoryRepository;
+    private readonly ICategoryRepository _categoryRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public CategoryService(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
@@ -51,18 +53,37 @@ public class CategoryService : ICategoryService
 
    public async Task AddAsync(Category category)
     {
+        if (await _categoryRepository.CategoryNameExistsAsync(category.Name))
+        {
+            throw new BadRequestException("Category name already exists.");
+        }
+
         await _categoryRepository.AddAsync(category);
         await _unitOfWork.SaveChangesAsync();
     }
 
-   public async Task UpdateAsync(Guid id, Category category)
+    public async Task UpdateAsync(Guid id, Category category)
     {
+        var existingCategory = await _categoryRepository.GetByIdAsync(id);
+
+        if (existingCategory == null)
+        {
+            throw new NotFoundException("Category not found.");
+        }
+
         await _categoryRepository.UpdateAsync(category);
         await _unitOfWork.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid id)
     {
+        var existingCategory = await _categoryRepository.GetByIdAsync(id);
+
+        if (existingCategory == null)
+        {
+            throw new NotFoundException("Category not found.");
+        }
+
         await _categoryRepository.DeleteAsync(id);
         await _unitOfWork.SaveChangesAsync();
     }
