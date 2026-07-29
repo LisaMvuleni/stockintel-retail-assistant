@@ -29,4 +29,5 @@ public class UpdateNotificationDtoValidator : AbstractValidator<UpdateNotificati
             .NotEmpty()
             .MaximumLength(1000);
     }
+      
 }

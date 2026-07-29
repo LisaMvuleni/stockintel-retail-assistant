@@ -11,10 +11,13 @@ public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+    public ProductService(IProductRepository productRepository,ICategoryRepository categoryRepository,
+         IUnitOfWork unitOfWork)
     {
         _productRepository = productRepository;
+        _categoryRepository = categoryRepository;
         _unitOfWork = unitOfWork;
     }
 
@@ -72,8 +75,23 @@ public class ProductService : IProductService
 }
 
 
-    public async Task AddAsync(Product product)
+public async Task AddAsync(Product product)
 {
+    if (!await _categoryRepository.CategoryExistsAsync(product.CategoryId))
+    {
+        throw new NotFoundException("Category not found.");
+    }
+
+    if (await _productRepository.SKUExistsAsync(product.SKU))
+    {
+        throw new BadRequestException("SKU already exists.");
+    }
+
+    if (await _productRepository.BarcodeExistsAsync(product.Barcode))
+    {
+        throw new BadRequestException("Barcode already exists.");
+    }
+
     await _productRepository.AddAsync(product);
     await _unitOfWork.SaveChangesAsync();
 }

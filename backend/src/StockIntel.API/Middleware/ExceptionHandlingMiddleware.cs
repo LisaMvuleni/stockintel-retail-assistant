@@ -25,15 +25,35 @@ public class ExceptionHandlingMiddleware
         }
         catch (NotFoundException ex)
         {
-            await HandleExceptionAsync(context, StatusCodes.Status404NotFound, "Not Found", ex.Message);
+            await HandleExceptionAsync(
+                context,
+                StatusCodes.Status404NotFound,
+                "Not Found",
+                ex.Message);
         }
         catch (ConflictException ex)
         {
-            await HandleExceptionAsync(context, StatusCodes.Status409Conflict, "Conflict", ex.Message);
+            await HandleExceptionAsync(
+                context,
+                StatusCodes.Status409Conflict,
+                "Conflict",
+                ex.Message);
         }
         catch (BusinessValidationException ex)
         {
-            await HandleExceptionAsync(context, StatusCodes.Status400BadRequest, "Validation Error", ex.Message);
+            await HandleExceptionAsync(
+                context,
+                StatusCodes.Status400BadRequest,
+                "Validation Error",
+                ex.Message);
+        }
+        catch (BadRequestException ex)
+        {
+            await HandleExceptionAsync(
+                context,
+                StatusCodes.Status400BadRequest,
+                "Bad Request",
+                ex.Message);
         }
         catch (Exception ex)
         {
