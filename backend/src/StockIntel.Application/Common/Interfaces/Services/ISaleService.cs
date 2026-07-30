@@ -15,3 +15,4 @@ public interface ISaleService
 
     Task DeleteAsync(Guid id);
 }
+
