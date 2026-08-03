@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockIntel.Application.Interfaces.Services;
 using StockIntel.Domain.Entities;
@@ -5,6 +6,7 @@ using StockIntel.Application.DTOs.Product;
 
 namespace StockIntel.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ProductController : ControllerBase
@@ -16,15 +18,13 @@ public class ProductController : ControllerBase
         _productService = productService;
     }
 
-  
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
     {
-        var products = await _productService. GetProductsAsync();
+        var products = await _productService.GetProductsAsync();
         return Ok(products);
     }
 
-    
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<ProductDto>> GetById(Guid id)
     {
@@ -38,8 +38,8 @@ public class ProductController : ControllerBase
         return Ok(product);
     }
 
-    
-  [HttpPost]
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
     public async Task<ActionResult<ProductDto>> Create(CreateProductDto dto)
     {
         var product = new Product
@@ -85,7 +85,8 @@ public class ProductController : ControllerBase
             productDto);
     }
 
-   [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id:guid}")]
     public async Task<ActionResult> UpdateAsync(Guid id, UpdateProductDto dto)
     {
         var product = new Product
@@ -109,7 +110,8 @@ public class ProductController : ControllerBase
 
         return NoContent();
     }
-  
+
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult> Delete(Guid id)
     {
