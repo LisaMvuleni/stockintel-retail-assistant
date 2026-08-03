@@ -68,9 +68,6 @@ public class SaleController : ControllerBase
             }).ToList()
         };
 
-        return CreatedAtAction(
-            nameof(GetByIdAsync),
-            new { id = saleDto.Id },
-            saleDto);
+       return Ok(saleDto);
 }
 }
