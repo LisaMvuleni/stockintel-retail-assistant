@@ -55,6 +55,15 @@ public class ExceptionHandlingMiddleware
                 "Bad Request",
                 ex.Message);
         }
+        catch (UnauthorizedAccessException ex)
+        {
+            await HandleExceptionAsync(
+                context,
+                StatusCodes.Status401Unauthorized,
+                "Unauthorized",
+                ex.Message);
+        }
+
         catch (Exception ex)
         {
             _logger.LogError(ex, "An unhandled exception occurred.");

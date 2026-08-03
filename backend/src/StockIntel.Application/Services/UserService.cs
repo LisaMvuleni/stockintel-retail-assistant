@@ -3,6 +3,8 @@
  using StockIntel.Application.Common.Interfaces;
  using StockIntel.Application.DTOs.User;
  using StockIntel.Application.Exceptions;
+using StockIntel.Application.DTOs.Auth;
+using StockIntel.Application.Interfaces.Services;
 
  namespace StockIntel.Application.Services;
 
@@ -10,34 +12,61 @@
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
-
-    public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
+    private readonly IJwtService _jwtService;
+    public UserService(
+        IUserRepository userRepository,
+        IUnitOfWork unitOfWork,
+        IJwtService jwtService)
     {
         _userRepository = userRepository;
         _unitOfWork = unitOfWork;
+        _jwtService = jwtService;
     }
 
     
-    public async Task<UserDto?> GetByIdAsync(Guid id)
-{
-    var user = await _userRepository.GetByIdAsync(id);
-
-   if (user == null)
+    public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
     {
-        throw new NotFoundException("User not found.");
+        var user = await _userRepository.GetByEmailAsync(loginDto.Email);
+
+        if (user == null)
+        {
+            throw new UnauthorizedAccessException("Invalid email or password.");
+        }
+
+        if (user.PasswordHash != loginDto.Password)
+        {
+            throw new UnauthorizedAccessException("Invalid email or password.");
+        }
+
+        var token = _jwtService.GenerateToken(user);
+
+        return new AuthResponseDto
+        {
+            Token = token,
+            Email = user.Email,
+            Role = user.Role
+        };
     }
-
-    return new UserDto
+    public async Task<UserDto?> GetByIdAsync(Guid id)
     {
-        UserId = user.UserId,
-        FirstName = user.FirstName,
-        LastName = user.LastName,
-        Email = user.Email,
-        Role = user.Role,
-        IsActive = user.IsActive,
-        CreatedAt = user.CreatedAt
-    };
-}
+        var user = await _userRepository.GetByIdAsync(id);
+
+    if (user == null)
+        {
+            throw new NotFoundException("User not found.");
+        }
+
+        return new UserDto
+        {
+            UserId = user.UserId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            Role = user.Role,
+            IsActive = user.IsActive,
+            CreatedAt = user.CreatedAt
+        };
+    }
 
 
     public async Task<UserDto?> GetByEmailAsync(string email)
