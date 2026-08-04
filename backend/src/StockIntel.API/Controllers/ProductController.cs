@@ -18,6 +18,7 @@ public class ProductController : ControllerBase
         _productService = productService;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
     {

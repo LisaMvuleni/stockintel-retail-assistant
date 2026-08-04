@@ -25,7 +25,7 @@ function LoginPage() {
     let isValid = true;
     setEmailError("");
     setPasswordError("");
-
+    
     if (!email.trim()) {
       setEmailError("Email address is required");
       isValid = false;
